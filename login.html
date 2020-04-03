@@ -50,7 +50,7 @@
     </div>
     <div class="col-md-3" style="padding-top:20px">
         <ol class="list-inline">
-            <li><a href="login.htm">登录</a></li>
+            <li><a href="login.html">登录</a></li>
             <li><a href="register.htm">注册</a></li>
             <li><a href="cart.htm">购物车</a></li>
         </ol>
@@ -124,16 +124,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="inputCode" placeholder="请输入验证码">
-                        </div>
-                        <div class="col-sm-3">
-                            <img src="./image/captcha.jhtml"/>
-                        </div>
-
-                    </div>
-                    <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
                                 <label>
@@ -179,18 +169,24 @@
     </div>
 </div>
     <script>
-        var user = {
-            "email":document.getElementById("username").value,
-            "pwd":document.getElementById("inputPassword3").value
-        }
+
         $("#login").click(function () {
+            var user={
+                "email":document.getElementById("username").value,
+                "pwd":document.getElementById("inputPassword3").value
+            };
             $.ajax({
                 type: 'POST',
                 data: JSON.stringify(user),
                 contentType: 'application/json; charset=utf-8',
                 url: 'http://localhost:8080/user/login',
                 success: function (result) {
-                    alert("登陆成功");
+                    if (result.code == 200){
+                        alert("登录成功");
+                        window.location.replace("./index.html");
+                    } else {
+                        alert(result.msg);
+                    }
                 },
 
             });
