@@ -6,21 +6,16 @@
     <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
 </head>
 <body>
-<div>
-    用户名：<input type="text" class="form-control" id="email" placeholder="请输入用户名">
-</div>
-<div>
-    密码：<input type="text" class="form-control" id="pwd" placeholder="请输入密码">
-</div>
+
 <button id="register">登录</button>
 <a href="./newRegister.html">没有账号？去注册</a>
 </body>
 <script>
     $("#register").click(function () {
-        var user={
-            "email":document.getElementById("email").value,
-            "pwd":document.getElementById("pwd").value
-        };
+        // var user={
+        //     "email":document.getElementById("email").value,
+        //     "pwd":document.getElementById("pwd").value
+        // };
 
         // $.ajax({
         //     type : "GET",
@@ -32,16 +27,16 @@
         //  });
 
         $.ajax({
-            type: 'POST',
-            data: JSON.stringify(user),
+            type: 'GET',
+            // data: JSON.stringify(user),
             contentType: 'application/json; charset=utf-8',
             withCredentials: true,
-            url: 'http://localhost:8080/user/login',
-            // url: 'http://www.dxlove.com:8080/xinxin-api/user/login',
+            // url: 'http://localhost:8080/user/test?user=123',
+            url: 'http://www.dxlove.com:8080/xinxin-api/user/test?user=123',
             success: function (result) {
                 if (result.code == 200){
-                    alert("登录成功");
-                    window.location.replace("./newIndex.html");
+                    alert("访问成功");
+                    window.location.replace("./index.html");
                 } else {
                     alert(result.msg);
                 }
